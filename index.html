@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Calculator</title>
+    <title>Calculadora de laboratorio</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -79,79 +79,79 @@
 </head>
 <body>
     <div class="container">
-        <h1>Fitness Calculator</h1>
+        <h1>Calculadora de laboratorio</h1>
 
         <!-- Queens College Step Test -->
         <div class="calculator-section">
             <h2>Queens College Step Test</h2>
             <div class="form-group">
-                <label for="queens-gender">Gender:</label>
+                <label for="queens-gender">Genero:</label>
                 <select id="queens-gender">
-                    <option value="M">Male</option>
-                    <option value="F">Female</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="queens-hr">Heart Rate (bpm):</label>
+                <label for="queens-hr">Frecuencia cardiaca final:</label>
                 <input type="number" id="queens-hr" required>
             </div>
-            <button id="queens-calculate-btn">Calculate</button>
+            <button id="queens-calculate-btn">Calcular</button>
             <div id="queens-result" class="result" style="display:none;"></div>
         </div>
 
         <!-- Rockport 1 Mile Walk Test -->
         <div class="calculator-section">
-            <h2>Rockport 1 Mile Walk Test</h2>
+            <h2>Rockport caminata 1 milla</h2>
             <div class="form-group">
-                <label for="rockport-age">Age (18-79):</label>
+                <label for="rockport-age">Edad (18-79):</label>
                 <input type="number" id="rockport-age" required min="18" max="79">
             </div>
             <div class="form-group">
-                <label for="rockport-weight">Weight (lbs):</label>
+                <label for="rockport-weight">Peso (lbs):</label>
                 <input type="number" id="rockport-weight" required>
             </div>
             <div class="form-group">
-                <label for="rockport-gender">Gender:</label>
+                <label for="rockport-gender">Genero:</label>
                 <select id="rockport-gender">
-                    <option value="M">Male</option>
-                    <option value="F">Female</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="rockport-hr">Heart Rate (bpm):</label>
+                <label for="rockport-hr">Frecuencia cardiaca final:</label>
                 <input type="number" id="rockport-hr" required>
             </div>
             <div class="form-group">
-                <label for="rockport-time">Time (mm:ss):</label>
+                <label for="rockport-time">Tiempo (mm:ss):</label>
                 <input type="text" id="rockport-time" required placeholder="mm:ss">
             </div>
-            <button id="rockport-calculate-btn">Calculate</button>
+            <button id="rockport-calculate-btn">Calcular</button>
             <div id="rockport-result" class="result" style="display:none;"></div>
         </div>
 
         <!-- Lander RM -->
         <div class="calculator-section">
-            <h2>Lander RM Estimate</h2>
+            <h2>Lander Estimacion RM Maximo</h2>
             <div class="form-group">
-                <label for="lander-weight-lifted">Weight Lifted:</label>
+                <label for="lander-weight-lifted">Peso Levantado:</label>
                 <input type="number" id="lander-weight-lifted" required>
             </div>
             <div class="form-group">
-                <label for="lander-reps">Repetitions:</label>
+                <label for="lander-reps">Repeticiones logradas:</label>
                 <input type="number" id="lander-reps" required>
             </div>
-            <button id="lander-calculate-btn">Calculate</button>
+            <button id="lander-calculate-btn">Calcular</button>
             <div id="lander-result" class="result" style="display:none;"></div>
         </div>
 
         <!-- Yo-Yo Intermittent Recovery Test -->
         <div class="calculator-section">
-            <h2>Yo-Yo Intermittent Recovery Test</h2>
+            <h2>Yo-Yo Test Recuperacion Intermitente</h2>
             <div class="form-group">
-                <label for="yoyo-distance">Distance (meters):</label>
+                <label for="yoyo-distance">Distancia (metros):</label>
                 <input type="number" id="yoyo-distance" required>
             </div>
-            <button id="yoyo-calculate-btn">Calculate</button>
+            <button id="yoyo-calculate-btn">Calcular</button>
             <div id="yoyo-result" class="result" style="display:none;"></div>
         </div>
     </div>
@@ -171,7 +171,7 @@
             } else {
                 result = 65.81 - (0.1847 * hr);
             }
-            resultDiv.textContent = `Your VO2Max is: ${result.toFixed(2)}`;
+            resultDiv.textContent = `Su VO2Max es: ${result.toFixed(2)}`;
             resultDiv.style.display = 'block';
         });
 
@@ -186,10 +186,10 @@
             let result;
 
             if (!age || !weight || !hr || !timeInput) { alert('Please enter all values.'); return; }
-            if (age < 18 || age > 79) { alert('Age must be between 18 and 79.'); return; }
+            if (age < 18 || age > 79) { alert('Edad debe estar entre 18 y 79.'); return; }
 
             const timeParts = timeInput.split(':');
-            if (timeParts.length !== 2) { alert('Please enter time in mm:ss format.'); return; }
+            if (timeParts.length !== 2) { alert('Ingrese el tiempo en formato mm:ss .'); return; }
             const time = parseFloat(timeParts[0]) + (parseFloat(timeParts[1]) / 60);
 
             if (gender === 'M') {
@@ -205,7 +205,7 @@
                     result = 132.853 - (0.3877 * age) - (0.1692 * weight) - (3.2649 * time) - (0.1565 * hr);
                 }
             }
-            resultDiv.textContent = `Your VO2Max is: ${result.toFixed(3)}`;
+            resultDiv.textContent = `Su VO2Max es: ${result.toFixed(3)}`;
             resultDiv.style.display = 'block';
         });
 
@@ -216,10 +216,10 @@
             const resultDiv = document.getElementById('lander-result');
             let result;
 
-            if (!weightLifted || !reps) { alert('Please enter all values.'); return; }
+            if (!weightLifted || !reps) { alert('Por favor rellene todos los espacios.'); return; }
 
             result = (100 * weightLifted) / (101.3 - 2.67123 * reps);
-            resultDiv.textContent = `Your Estimated RM is: ${result.toFixed(2)}`;
+            resultDiv.textContent = `El RM Maximo estimado es: ${result.toFixed(2)}`;
             resultDiv.style.display = 'block';
         });
 
@@ -229,11 +229,11 @@
             const resultDiv = document.getElementById('yoyo-result');
             let result;
 
-            if (!distance) { alert('Please enter all values.'); return; }
-            if (distance < 0) { alert('Distance cannot be negative.'); return; }
+            if (!distance) { alert('Por favor rellene todos los espacios.'); return; }
+            if (distance < 0) { alert('Distance no puede ser negativa.'); return; }
 
             result = distance * 0.0084 + 36.4;
-            resultDiv.textContent = `Your VO2Max is: ${result.toFixed(2)}`;
+            resultDiv.textContent = `Su VO2Max es: ${result.toFixed(2)}`;
             resultDiv.style.display = 'block';
         });
     </script>
