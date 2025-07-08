@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Calculator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fitness Calculator</h1>
+        <div class="form-group">
+            <label for="calculator">Select Calculator:</label>
+            <select id="calculator">
+                <option value="queens">Queens College Step Test</option>
+                <option value="rockport">Rockport 1 Mile Walk Test</option>
+                <option value="lander">Lander RM</option>
+                <option value="yoyo">Yo-Yo Intermittent Recovery Test</option>
+            </select>
+        </div>
+        <div id="calculator-form"></div>
+        <button id="calculate-btn">Calculate</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const calculatorSelect = document.getElementById('calculator');
+        const calculatorForm = document.getElementById('calculator-form');
+        const calculateBtn = document.getElementById('calculate-btn');
+        const resultDiv = document.getElementById('result');
+
+        const forms = {
+            queens: `
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender">
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="hr">Heart Rate (bpm):</label>
+                    <input type="number" id="hr" required>
+                </div>
+            `,
+            rockport: `
+                <div class="form-group">
+                    <label for="age">Age (18-79):</label>
+                    <input type="number" id="age" required min="18" max="79">
+                </div>
+                <div class="form-group">
+                    <label for="weight">Weight (lbs):</label>
+                    <input type="number" id="weight" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender">
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="hr">Heart Rate (bpm):</label>
+                    <input type="number" id="hr" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Time (mm:ss):</label>
+                    <input type="text" id="time" required placeholder="mm:ss">
+                </div>
+            `,
+            lander: `
+                <div class="form-group">
+                    <label for="weight-lifted">Weight Lifted:</label>
+                    <input type="number" id="weight-lifted" required>
+                </div>
+                <div class="form-group">
+                    <label for="reps">Repetitions:</label>
+                    <input type="number" id="reps" required>
+                </div>
+            `,
+            yoyo: `
+                <div class="form-group">
+                    <label for="distance">Distance (meters):</label>
+                    <input type="number" id="distance" required>
+                </div>
+            `
+        };
+
+        function updateForm() {
+            calculatorForm.innerHTML = forms[calculatorSelect.value];
+        }
+
+        calculatorSelect.addEventListener('change', updateForm);
+
+        calculateBtn.addEventListener('click', () => {
+            const calculator = calculatorSelect.value;
+            let result;
+
+            if (calculator === 'queens') {
+                const gender = document.getElementById('gender').value;
+                const hr = parseFloat(document.getElementById('hr').value);
+                if (gender === 'M') {
+                    result = 111.33 - (0.42 * hr);
+                } else {
+                    result = 65.81 - (0.1847 * hr);
+                }
+                resultDiv.textContent = `Your VO2Max is: ${result.toFixed(2)}`;
+            } else if (calculator === 'rockport') {
+                const age = parseInt(document.getElementById('age').value);
+                const weight = parseFloat(document.getElementById('weight').value);
+                const gender = document.getElementById('gender').value;
+                const hr = parseFloat(document.getElementById('hr').value);
+                const timeParts = document.getElementById('time').value.split(':');
+                const time = parseFloat(timeParts[0]) + (parseFloat(timeParts[1]) / 60);
+
+                if (gender === 'M') {
+                    if (age >= 18 && age <= 29) {
+                        result = 97.660 - (0.0957 * weight) - (1.4537 * time) - (0.1194 * hr);
+                    } else {
+                        result = 139.168 - (0.3877 * age) - (0.1692 * weight) - (3.2649 * time) - (0.1565 * hr);
+                    }
+                } else {
+                    if (age >= 18 && age <= 29) {
+                        result = 88.768 - (0.0957 * weight) - (1.4537 * time) - (0.1194 * hr);
+                    }
+                    else {
+                        result = 132.853 - (0.3877 * age) - (0.1692 * weight) - (3.2649 * time) - (0.1565 * hr);
+                    }
+                }
+                 resultDiv.textContent = `Your VO2Max is: ${result.toFixed(3)}`;
+
+            } else if (calculator === 'lander') {
+                const weightLifted = parseFloat(document.getElementById('weight-lifted').value);
+                const reps = parseInt(document.getElementById('reps').value);
+                result = (100 * weightLifted) / (101.3 - 2.67123 * reps);
+                resultDiv.textContent = `Your Estimated RM is: ${result.toFixed(2)}`;
+            } else if (calculator === 'yoyo') {
+                const distance = parseFloat(document.getElementById('distance').value);
+                result = distance * 0.0084 + 36.4;
+                resultDiv.textContent = `Your VO2Max is: ${result.toFixed(2)}`;
+            }
+        });
+
+        // Initial form setup
+        updateForm();
+    </script>
+</body>
+</html>
