@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Calculator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f0f2f5;
+            color: #333;
+            padding: 1rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #0056b3;
+        }
+        .calculator-section {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #e9f7ef;
+            border: 1px solid #a3e9a4;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fitness Calculator</h1>
+
+        <!-- Queens College Step Test -->
+        <div class="calculator-section">
+            <h2>Queens College Step Test</h2>
+            <div class="form-group">
+                <label for="queens-gender">Gender:</label>
+                <select id="queens-gender">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="queens-hr">Heart Rate (bpm):</label>
+                <input type="number" id="queens-hr" required>
+            </div>
+            <button id="queens-calculate-btn">Calculate</button>
+            <div id="queens-result" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Rockport 1 Mile Walk Test -->
+        <div class="calculator-section">
+            <h2>Rockport 1 Mile Walk Test</h2>
+            <div class="form-group">
+                <label for="rockport-age">Age (18-79):</label>
+                <input type="number" id="rockport-age" required min="18" max="79">
+            </div>
+            <div class="form-group">
+                <label for="rockport-weight">Weight (lbs):</label>
+                <input type="number" id="rockport-weight" required>
+            </div>
+            <div class="form-group">
+                <label for="rockport-gender">Gender:</label>
+                <select id="rockport-gender">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="rockport-hr">Heart Rate (bpm):</label>
+                <input type="number" id="rockport-hr" required>
+            </div>
+            <div class="form-group">
+                <label for="rockport-time">Time (mm:ss):</label>
+                <input type="text" id="rockport-time" required placeholder="mm:ss">
+            </div>
+            <button id="rockport-calculate-btn">Calculate</button>
+            <div id="rockport-result" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Lander RM -->
+        <div class="calculator-section">
+            <h2>Lander RM Estimate</h2>
+            <div class="form-group">
+                <label for="lander-weight-lifted">Weight Lifted:</label>
+                <input type="number" id="lander-weight-lifted" required>
+            </div>
+            <div class="form-group">
+                <label for="lander-reps">Repetitions:</label>
+                <input type="number" id="lander-reps" required>
+            </div>
+            <button id="lander-calculate-btn">Calculate</button>
+            <div id="lander-result" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Yo-Yo Intermittent Recovery Test -->
+        <div class="calculator-section">
+            <h2>Yo-Yo Intermittent Recovery Test</h2>
+            <div class="form-group">
+                <label for="yoyo-distance">Distance (meters):</label>
+                <input type="number" id="yoyo-distance" required>
+            </div>
+            <button id="yoyo-calculate-btn">Calculate</button>
+            <div id="yoyo-result" class="result" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Queens College Step Test
+        document.getElementById('queens-calculate-btn').addEventListener('click', () => {
+            const gender = document.getElementById('queens-gender').value;
+            const hr = parseFloat(document.getElementById('queens-hr').value);
+            const resultDiv = document.getElementById('queens-result');
+            let result;
+
+            if (!hr) { alert('Please enter all values.'); return; }
+
+            if (gender === 'M') {
+                result = 111.33 - (0.42 * hr);
+            } else {
+                result = 65.81 - (0.1847 * hr);
+            }
+            resultDiv.textContent = `Your VO2Max is: ${result.toFixed(2)}`;
+            resultDiv.style.display = 'block';
+        });
+
+        // Rockport 1 Mile Walk Test
+        document.getElementById('rockport-calculate-btn').addEventListener('click', () => {
+            const age = parseInt(document.getElementById('rockport-age').value);
+            const weight = parseFloat(document.getElementById('rockport-weight').value);
+            const gender = document.getElementById('rockport-gender').value;
+            const hr = parseFloat(document.getElementById('rockport-hr').value);
+            const timeInput = document.getElementById('rockport-time').value;
+            const resultDiv = document.getElementById('rockport-result');
+            let result;
+
+            if (!age || !weight || !hr || !timeInput) { alert('Please enter all values.'); return; }
+            if (age < 18 || age > 79) { alert('Age must be between 18 and 79.'); return; }
+
+            const timeParts = timeInput.split(':');
+            if (timeParts.length !== 2) { alert('Please enter time in mm:ss format.'); return; }
+            const time = parseFloat(timeParts[0]) + (parseFloat(timeParts[1]) / 60);
+
+            if (gender === 'M') {
+                if (age >= 18 && age <= 29) {
+                    result = 97.660 - (0.0957 * weight) - (1.4537 * time) - (0.1194 * hr);
+                } else {
+                    result = 139.168 - (0.3877 * age) - (0.1692 * weight) - (3.2649 * time) - (0.1565 * hr);
+                }
+            } else { // Female
+                if (age >= 18 && age <= 29) {
+                    result = 88.768 - (0.0957 * weight) - (1.4537 * time) - (0.1194 * hr);
+                } else {
+                    result = 132.853 - (0.3877 * age) - (0.1692 * weight) - (3.2649 * time) - (0.1565 * hr);
+                }
+            }
+            resultDiv.textContent = `Your VO2Max is: ${result.toFixed(3)}`;
+            resultDiv.style.display = 'block';
+        });
+
+        // Lander RM
+        document.getElementById('lander-calculate-btn').addEventListener('click', () => {
+            const weightLifted = parseFloat(document.getElementById('lander-weight-lifted').value);
+            const reps = parseInt(document.getElementById('lander-reps').value);
+            const resultDiv = document.getElementById('lander-result');
+            let result;
+
+            if (!weightLifted || !reps) { alert('Please enter all values.'); return; }
+
+            result = (100 * weightLifted) / (101.3 - 2.67123 * reps);
+            resultDiv.textContent = `Your Estimated RM is: ${result.toFixed(2)}`;
+            resultDiv.style.display = 'block';
+        });
+
+        // Yo-Yo Test
+        document.getElementById('yoyo-calculate-btn').addEventListener('click', () => {
+            const distance = parseFloat(document.getElementById('yoyo-distance').value);
+            const resultDiv = document.getElementById('yoyo-result');
+            let result;
+
+            if (!distance) { alert('Please enter all values.'); return; }
+            if (distance < 0) { alert('Distance cannot be negative.'); return; }
+
+            result = distance * 0.0084 + 36.4;
+            resultDiv.textContent = `Your VO2Max is: ${result.toFixed(2)}`;
+            resultDiv.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
+
