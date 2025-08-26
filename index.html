@@ -62,6 +62,30 @@
             <div id="rockport-result" class="result" style="display:none;"></div>
         </div>
 
+        <!-- Rockport Reference Table -->
+        <div id="rockport-reference" class="reference-table" style="display:none;">
+            <h3>Estándares de referencia para condición cardiorrespiratoria ( según: Kaminsky, Arena, and Myers 2015; Kaminsky et al. 2017.)</h3>
+            <div class="classification-result" id="rockport-classification"></div>
+            <div class="range-indicator">
+                <div class="range-bar">
+                    <div class="marker" id="rockport-marker"></div>
+                </div>
+                <div class="range-labels" id="rockport-range-labels"></div>
+            </div>
+            <table class="result-table">
+                <thead>
+                <tr>
+                    <th>Clasificación</th>
+                    <th>Percentil</th>
+                    <th>Rango VO2Max</th>
+                </tr>
+                </thead>
+                <tbody id="rockport-reference-body">
+                <!-- Se llena dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+
         <!-- Lander RM -->
         <div class="calculator-section">
             <h2>Lander Estimacion RM Maximo</h2>
