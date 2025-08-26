@@ -68,3 +68,68 @@ body {
             font-weight: bold;
             color: #155724;
         }
+
+.reference-table {
+    margin-top: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #f8f8f8;
+}
+
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.result-table th, .result-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.result-table th {
+    background-color: #f0f0f0;
+}
+
+.result-table tr.highlighted {
+    background-color: #e6f7ff;
+    font-weight: bold;
+}
+
+.range-indicator {
+    margin: 1rem 0;
+}
+
+.range-bar {
+    height: 20px;
+    background: linear-gradient(to right, #ff6b6b, #ffdd59, #1dd1a1);
+    position: relative;
+    border-radius: 10px;
+}
+
+.marker {
+    position: absolute;
+    top: -10px;
+    width: 8px;
+    height: 40px;
+    background-color: #2c3e50;
+    border-radius: 4px;
+    transform: translateX(-4px);
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+}
+
+.classification-result {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
