@@ -327,7 +327,7 @@ function showRockportReference(result, age, gender) {
     referenceTable.style.display = 'block';
 }
 
-// Lander RM
+// Lander 1RM Test
 document.getElementById('lander-calculate-btn').addEventListener('click', () => {
     const weightLifted = parseFloat(document.getElementById('lander-weight-lifted').value);
     const reps = parseInt(document.getElementById('lander-reps').value);
