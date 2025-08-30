@@ -133,6 +133,44 @@
             <button id="bmi-calculate-btn">Calcular</button>
             <div id="bmi-result" class="result" style="display:none;"></div>
         </div>
+
+        <!-- Durnin-Womersley Skinfolds -->
+        <div class="calculator-section">
+            <h2>Pliegues Cutáneos (Durnin-Womersley 1974)</h2>
+            <div class="form-group">
+                <label for="durnin-gender">Genero:</label>
+                <select id="durnin-gender">
+                    <option value="male">Masculino</option>
+                    <option value="female">Femenino</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="durnin-age">Edad (años):</label>
+                <input type="number" id="durnin-age" required>
+            </div>
+            <div class="form-group">
+                <label for="durnin-weight">Peso (kg):</label>
+                <input type="number" id="durnin-weight" required>
+            </div>
+            <div class="form-group">
+                <label for="durnin-biceps">Pliegue Bíceps (mm):</label>
+                <input type="number" id="durnin-biceps" required>
+            </div>
+            <div class="form-group">
+                <label for="durnin-triceps">Pliegue Tríceps (mm):</label>
+                <input type="number" id="durnin-triceps" required>
+            </div>
+            <div class="form-group">
+                <label for="durnin-subscapular">Pliegue Subescapular (mm):</label>
+                <input type="number" id="durnin-subscapular" required>
+            </div>
+            <div class="form-group">
+                <label for="durnin-suprailiac">Pliegue Suprailiaco (mm):</label>
+                <input type="number" id="durnin-suprailiac" required>
+            </div>
+            <button id="durnin-calculate-btn">Calcular</button>
+            <div id="durnin-result" class="result" style="display:none;"></div>
+        </div>
     </div>
 
     <script type="module" src="scripts/main.js"></script>

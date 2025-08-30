@@ -1,3 +1,4 @@
+
 from BusinessLogic.formulasRockport import VO2Max
 
 frecuenciaCardiaca = 0
