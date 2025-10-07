@@ -55,3 +55,17 @@ export function isNotNegative(value, message) {
     }
     return true;
 }
+
+/**
+ * Validates if a value is a valid percentage (0-100).
+ * @param {number} value - The value to check.
+ * @param {string} message - The message to alert if validation fails.
+ * @returns {boolean} - True if validation passes, false otherwise.
+ */
+export function isPercentage(value, message) {
+    if (value < 0 || value > 100) {
+        alert(message);
+        return false;
+    }
+    return true;
+}

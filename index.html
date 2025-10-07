@@ -171,6 +171,47 @@
             <button id="durnin-calculate-btn">Calcular</button>
             <div id="durnin-result" class="result" style="display:none;"></div>
         </div>
+
+        <!-- Max Heart Rate Calculator -->
+        <div class="calculator-section">
+            <h2>Frecuencia Cardíaca Máxima (FCmáx)</h2>
+            <div class="form-group">
+                <label for="mhr-age">Edad (años):</label>
+                <input type="number" id="mhr-age" required>
+            </div>
+            <div class="form-group">
+                <label for="mhr-formula">Fórmula:</label>
+                <select id="mhr-formula">
+                    <option value="220-age">Fox (FCmáx = 220 - edad)</option>
+                    <option value="208-0.7-age">Tanaka (FCmáx = 208 - (0.7 * edad))</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="mhr-percentage">Porcentaje de Trabajo (% - Opcional):</label>
+                <input type="number" id="mhr-percentage" min="0" max="100">
+            </div>
+            <button id="mhr-calculate-btn">Calcular</button>
+            <div id="mhr-result" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Karvonen Formula Calculator -->
+        <div class="calculator-section">
+            <h2>Fórmula de Karvonen (FC Objetivo)</h2>
+            <div class="form-group">
+                <label for="karvonen-age">Edad (años):</label>
+                <input type="number" id="karvonen-age" required>
+            </div>
+            <div class="form-group">
+                <label for="karvonen-resting-hr">FC en Reposo (pulsaciones por minuto):</label>
+                <input type="number" id="karvonen-resting-hr" required>
+            </div>
+            <div class="form-group">
+                <label for="karvonen-intensity">Intensidad (%):</label>
+                <input type="number" id="karvonen-intensity" required min="0" max="100">
+            </div>
+            <button id="karvonen-calculate-btn">Calcular</button>
+            <div id="karvonen-result" class="result" style="display:none;"></div>
+        </div>
     </div>
 
     <script type="module" src="scripts/main.js"></script>

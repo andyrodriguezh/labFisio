@@ -4,6 +4,8 @@ import { initLanderCalculator } from './calculators/lander.js';
 import { initYoYoCalculator } from './calculators/yoyo.js';
 import { initBmiCalculator } from './calculators/bmi.js';
 import { initDurninCalculator } from './calculators/durnin.js';
+import { initMaxHeartRateCalculator } from './calculators/max-heart-rate.js';
+import { initKarvonenCalculator } from './calculators/karvonen.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initQueensCalculator();
@@ -12,4 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initYoYoCalculator();
     initBmiCalculator();
     initDurninCalculator();
+    initMaxHeartRateCalculator();
+    initKarvonenCalculator();
 });
